@@ -2,24 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:kalkulator/widget/buttons.dart';
 
 class Kalkulator extends StatelessWidget {
-  final List<String> buttons = [
-    '7',
-    '8',
-    '9',
-    '/',
-    '4',
-    '5',
-    '6',
-    '*',
-    '1',
-    '2',
-    '3',
-    '-',
-    'C',
-    '0',
-    '=',
-    '+',
+  final List<List<String>> buttons = [
+    ['7', '8', '9', '/'],
+    ['4', '5', '6', '*'],
+    ['1', '2', '3', '-'],
+    ['C', '0', '=', '+'],
   ];
+
+  final Map<String, Color> buttonColors = {
+    '=': Colors.orange,
+    'C': Colors.red,
+  };
+
+  final Map<String, Color> buttonTextColors = {
+    '/': Colors.purple,
+    '*': Colors.purple,
+    '-': Colors.purple,
+    '+': Colors.purple,
+  };
+
   Kalkulator({super.key});
 
   @override
@@ -61,30 +62,21 @@ class Kalkulator extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Container(
+                alignment: Alignment.bottomCenter,
+                padding: EdgeInsets.only(
+                  top: 20.0,
+                  left: 10.0,
+                  right: 10.0,
+                  bottom: 5.0,
+                ),
                 decoration: const BoxDecoration(
                   color: Color.fromARGB(255, 231, 228, 228),
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30.0),
-                    topRight: Radius.circular(30.0),
+                    topLeft: Radius.circular(25.0),
+                    topRight: Radius.circular(25.0),
                   ),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: GridView.builder(
-                    itemCount: buttons.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
-                    ),
-                    itemBuilder: (BuildContext context, int index) {
-                      return MyButtons(
-                        color: Colors.white,
-                        textColor: Colors.black,
-                        buttonText: buttons[index],
-                      );
-                    },
-                  ),
-                ),
+                child: MyButtons(),
               ),
             ),
           ],
